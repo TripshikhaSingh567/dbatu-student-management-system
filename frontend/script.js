@@ -17,7 +17,7 @@
  * Production (Render): Uses actual deployed Render backend URL:
  * 'https://dbatu-student-management-system.onrender.com/api'
  */
-const RENDER_API_URL = 'https://dbatu-student-management-system.onrender.com/api';
+const RENDER_API_URL = 'https://dbatu-student-management-system-tgsz.onrender.com/api';
 
 const getApiBaseUrl = () => {
   if (typeof window !== 'undefined' && window.API_BASE_URL) {
