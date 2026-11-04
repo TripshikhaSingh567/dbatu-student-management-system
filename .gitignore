@@ -6,6 +6,8 @@ package-lock.json
 .env
 .env.*
 !.env.example
+.mcp/
+*claude_desktop_config*.json
 
 # OS generated files
 .DS_Store
