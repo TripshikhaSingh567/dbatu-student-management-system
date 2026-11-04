@@ -50,7 +50,7 @@
 
       <div class="sidebar-footer">
         <div class="system-version">
-          <span>SIMS Release v1.2</span>
+          <span>SIMS v2.0 &bull; Vercel Live</span>
           <span class="badge-dot-live"></span>
         </div>
       </div>
@@ -68,7 +68,7 @@
             ☰
           </button>
           <div class="breadcrumbs">
-            <span class="portal-badge">DBATU Registrar Portal</span>
+            <span class="portal-badge">DBATU Registrar Portal &bull; Vercel CI/CD</span>
             <span class="breadcrumb-separator">/</span>
             <h1 class="page-title" id="page-title">Executive Overview</h1>
           </div>
@@ -499,7 +499,7 @@
         <div class="footer-content">
           <p><strong>DBATU &bull; Dr. Babasaheb Ambedkar Technological University</strong> &bull; Student Information Management System</p>
           <p class="api-target-info">
-            Backend Endpoint: <code id="active-api-url">https://dbatu-student-management-system.onrender.com/api</code>
+            Backend Endpoint: <code id="active-api-url">https://dbatu-student-management-system-tgsz.onrender.com/api</code>
           </p>
         </div>
       </footer>
@@ -526,6 +526,11 @@
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Runtime Environment Configuration -->
+  <script>
+    window.API_BASE_URL = window.API_BASE_URL || 'https://dbatu-student-management-system-tgsz.onrender.com/api';
+  </script>
 
   <!-- Application Script -->
   <script src="script.js"></script>

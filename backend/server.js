@@ -14,10 +14,12 @@ const PORT = process.env.PORT || 5000;
 // ==========================================
 // 1. CORS Configuration
 // ==========================================
-// Production Netlify frontend fallback URL
-const DEFAULT_PRODUCTION_FRONTEND = 'https://melodious-mandazi-b2bc4f.netlify.app';
+// Production Vercel frontend URL
+const DEFAULT_PRODUCTION_FRONTEND = 'https://dbatu-student-management-system.vercel.app';
 
 const allowedOrigins = [
+  DEFAULT_PRODUCTION_FRONTEND,
+  'https://shimmering-paletas-a4e096.netlify.app',
   'http://localhost:3000',
   'http://127.0.0.1:3000',
   'http://localhost:5000',
@@ -27,8 +29,7 @@ const allowedOrigins = [
   'http://localhost:8080',
   'http://127.0.0.1:8080',
   'http://localhost:5173',
-  'http://127.0.0.1:5173',
-  DEFAULT_PRODUCTION_FRONTEND
+  'http://127.0.0.1:5173'
 ];
 
 if (process.env.FRONTEND_URL) {
@@ -57,6 +58,11 @@ const corsOptions = {
       return callback(null, true);
     }
     
+    // Allow all Vercel deployment domains (production, preview, branch deploys)
+    if (/^https:\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.vercel\.app$/.test(normalizedOrigin)) {
+      return callback(null, true);
+    }
+
     // In development mode, allow localhost with any port
     if (process.env.NODE_ENV !== 'production' && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(normalizedOrigin)) {
       return callback(null, true);

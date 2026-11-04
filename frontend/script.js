@@ -13,22 +13,24 @@
 /**
  * BACKEND API BASE URL CONFIGURATION
  * 
- * Local Development: Defaults to 'http://localhost:5000/api'
- * Production (Render): Uses actual deployed Render backend URL:
- * 'https://dbatu-student-management-system.onrender.com/api'
+ * Production (Render): Default backend URL:
+ * 'https://dbatu-student-management-system-tgsz.onrender.com/api'
+ * Supports dynamic runtime injection via window environment variables:
+ * - window.API_BASE_URL
+ * - window.VITE_API_URL
+ * - window.REACT_APP_API_URL
+ * - window.NEXT_PUBLIC_API_URL
+ * - window.__ENV__.API_URL
  */
 const RENDER_API_URL = 'https://dbatu-student-management-system-tgsz.onrender.com/api';
 
 const getApiBaseUrl = () => {
-  if (typeof window !== 'undefined' && window.API_BASE_URL) {
-    return window.API_BASE_URL;
-  }
-  const isLocal = window.location.hostname === 'localhost' || 
-                  window.location.hostname === '127.0.0.1' || 
-                  window.location.protocol === 'file:';
-  
-  if (isLocal) {
-    return 'http://localhost:5000/api';
+  if (typeof window !== 'undefined') {
+    if (window.API_BASE_URL) return window.API_BASE_URL.replace(/\/$/, '');
+    if (window.VITE_API_URL) return window.VITE_API_URL.replace(/\/$/, '');
+    if (window.REACT_APP_API_URL) return window.REACT_APP_API_URL.replace(/\/$/, '');
+    if (window.NEXT_PUBLIC_API_URL) return window.NEXT_PUBLIC_API_URL.replace(/\/$/, '');
+    if (window.__ENV__ && window.__ENV__.API_URL) return window.__ENV__.API_URL.replace(/\/$/, '');
   }
   return RENDER_API_URL;
 };
